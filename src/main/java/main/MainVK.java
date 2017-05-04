@@ -20,6 +20,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 public class MainVK {
 	private final String PROPERTIES_FILE = "src/main/resources/app.properties";
@@ -33,6 +34,8 @@ public class MainVK {
 
 	private String getAccessCodeURL;
 
+
+
 	public static void main(String[] args) {
 		MainVK main = new MainVK();
 		main.getInitialConfig();
@@ -45,7 +48,8 @@ public class MainVK {
 		// "https://oauth.vk.com/authorize?scope=offline&redirect_uri=" +
 		// BASE_DOMAIN + "&client_id="
 		// + Application_ID + "&display=page";
-		getAccessCodeURL = "https://oauth.vk.com/authorize?scope="+SCOPE+"&client_id="+Application_ID+"&display=mobile";
+		getAccessCodeURL = "https://oauth.vk.com/authorize?scope=" + SCOPE + "&client_id=" + Application_ID
+				+ "&display=mobile";
 		openBrowser(getAccessCodeURL);
 		String codeUrl = "https://oauth.vk.com/blank.html#code=3b9f91e10144f1072e";
 		CODE = getCode(codeUrl);
@@ -57,7 +61,7 @@ public class MainVK {
 
 		Pattern pattern = Pattern.compile(regexp);
 		Matcher matcher = pattern.matcher(url);
-		return matcher.find()?matcher.group(1):null;
+		return matcher.find() ? matcher.group(1) : null;
 
 	}
 
